@@ -11,15 +11,13 @@ defmodule GithubIssuesTest do
 
   test "get correct request" do
     use_cassette "github elixir-lang" do
-      { status, _ } = fetch("elixir-lang", "elixir")
-      assert status == :ok
+      assert { :ok , _ } = fetch("elixir-lang", "elixir")
     end
   end
 
   test "get incorrect request" do
     use_cassette "incorrect request" do
-      { status, _ } = fetch("ellang", "eir")
-      assert status == :ok
+      assert { :error , _ } = fetch("elixir-lang", "elir")
     end
   end
 end
