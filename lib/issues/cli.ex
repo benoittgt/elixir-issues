@@ -41,11 +41,13 @@ defmodule Issues.CLI do
     System.halt(0)
   end
 
-  def process({user, project, _count}) do
+  def process({user, project, count}) do
     Issues.GithubIssues.fetch(user, project)
     |> decode_response
     |> convert_to_list_of_maps
     |> sort_into_ascending_order
+    |> Enum.take(count)
+    # |> print_table_for_colums(["number", "created_at", "title"])
   end
 
   def decode_response({:ok, body}), do: body
