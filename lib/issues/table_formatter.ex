@@ -13,6 +13,19 @@ defmodule Issues.TableFormatter do
     end
   end
 
+  @doc """
+  Comment to try to document the method split_into_colums.
+  I'm quite impressed about this feature who test the comment.
+  Just ouhao
+
+  ## Example
+
+    iex> list = [Enum.into([{"a","1"},{"b","2"},{"c","3"}],%{}),
+    ...>         Enum.into([{"a","4"},{"b","5"},{"c","6"}],%{})]
+    iex> Issues.TableFormatter.split_into_columns(list, ["a", "b", "c"])
+    [ ["1", "4"], ["2", "5"], ["3", "6"]]
+  """
+
   def split_into_colums(rows, headers) do
     for header <- headers do
       for row <- rows, do: printable(row[header])
