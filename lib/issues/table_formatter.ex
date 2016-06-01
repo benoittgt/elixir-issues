@@ -3,13 +3,13 @@ defmodule Issues.TableFormatter do
   import Enum, only: [ each: 2, map: 2, map_join: 3, max: 1 ]
 
   def print_table_for_columns(rows, headers) do
-    with data_by_colums = split_into_colums(rows, headers),
-         colum_widths   = widths_of(data_by_colums),
-         format         = format_for(colum_widths)
+    with data_by_columns = split_into_columns(rows, headers),
+         column_widths   = widths_of(data_by_columns),
+         format         = format_for(column_widths)
     do
       puts_one_line_in_columns(headers, format)
-      IO.puts(separator(colum_widths))
-      puts_in_columns(data_by_colums, format)
+      IO.puts(separator(column_widths))
+      puts_in_columns(data_by_columns, format)
     end
   end
 
@@ -23,10 +23,10 @@ defmodule Issues.TableFormatter do
     iex> list = [Enum.into([{"a","1"},{"b","2"},{"c","3"}],%{}),
     ...>         Enum.into([{"a","4"},{"b","5"},{"c","6"}],%{})]
     iex> Issues.TableFormatter.split_into_columns(list, ["a", "b", "c"])
-    [ ["1", "4"], ["2", "5"], ["3", "6"]]
+    [ ["1", "4"], ["2", "5"], ["3", "6"] ]
   """
 
-  def split_into_colums(rows, headers) do
+  def split_into_columns(rows, headers) do
     for header <- headers do
       for row <- rows, do: printable(row[header])
     end

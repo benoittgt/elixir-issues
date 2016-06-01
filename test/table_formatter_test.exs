@@ -15,7 +15,7 @@ defmodule TableFormatterTest do
   def headers, do: [ :c1, :c2, :c4 ]
 
   def split_with_three_columns,
-    do: TF.split_into_colums(simple_test_data, headers)
+    do: TF.split_into_columns(simple_test_data, headers)
 
   test "split into columns" do
     columns = split_with_three_columns
